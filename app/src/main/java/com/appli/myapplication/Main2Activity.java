@@ -1,7 +1,9 @@
 package com.appli.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +14,15 @@ import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
 
+    String valeur= "" ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        TextView tv1 = findViewById(R.id.valeur);
-        tv1.setText("");
+        //Intent intent = getIntent();
+        //if (intent != null)   valeur=intent.getStringExtra("valeur") ;
+        //SharedPreferences settings = getSharedPreferences("cycle_vie_prefs", Context.MODE_PRIVATE);
         Button btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,11 +30,21 @@ public class Main2Activity extends AppCompatActivity {
                 Main2Activity.this.finish();
             }
         });
-
+        if(savedInstanceState != null){
+            valeur = savedInstanceState.getString("valeur");
+        }
+        setTxTValeur(valeur);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putString("valeur", valeur);
+    }
+
     public void setTxTValeur(String valeur) {
-        EditText zoneValeur = (EditText) findViewById(R.id.editTxtValeur);
-        zoneValeur.setText(valeur);
+          TextView tv1 = findViewById(R.id.valeur);
+          tv1.setText(valeur);
     }
     /** =============================================================
      * Exécuté que l'activité arrêtée via un "stop" redémarre.
@@ -51,8 +65,6 @@ public class Main2Activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         popUp("onStart()");
-        SharedPreferences settings = getSharedPreferences("cycle_vie_prefs", Context.MODE_PRIVATE);
-        setTxTValeur(settings.getString("valeur", ""));
     }
     /** ==============================================================
      * Exécutée à chaque passage en premier plan de l'activité.

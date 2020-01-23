@@ -26,12 +26,13 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         Button btn2ndpage = (Button) findViewById(R.id.btnActivite);
         btn2ndpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Main2Activity.class);
+                EditText zoneValeur = (EditText) findViewById(R.id.editTxtValeur);
+                intent.putExtra("valeur", zoneValeur.getText().toString()) ;
                 startActivity(intent);
             }
         });
