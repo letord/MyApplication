@@ -8,7 +8,8 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,8 +41,13 @@
                 android:layout_height="wrap_content">
             </Button>
         </LinearLayout>
-
+        <LinearLayout android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_width="fill_parent"
+            android:gravity="center_vertical|center_horizontal">
+            <Button android:text="2ème page" android:id="@+id/btnActivite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+        </LinearLayout>
     </LinearLayout>
-
-
 </android.support.constraint.ConstraintLayout>
