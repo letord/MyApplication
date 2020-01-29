@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AffichageLogin.class);
-                startActivity(intent);
                 intent.putExtra("login", Login.getText().toString());
                 intent.putExtra("passwd", passwd.getText().toString());
                 startActivity(intent);
@@ -34,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Login.setText("");
                 passwd.setText("");
+                //intent = new Intent(v.getContext(), AffichageLogin.class);
+               // startActivity(intent);
             }
         });
 
